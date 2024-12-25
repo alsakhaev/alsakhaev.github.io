@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["root"]
+    },
+    "parsed": {
+      "type": "object",
+      "properties": {
+        "websiteName": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "fullname": {
+          "type": "string"
+        },
+        "img": {
+          "type": "string",
+          "format": "uri"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": ["websiteName", "username", "fullname", "img", "url"]
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["post", "profile"]
+          },
+          "parsed": {
+            "type": "object",
+            "properties": {
+              "authorUsername": {
+                "type": "string"
+              },
+              "authorImg": {
+                "type": "string",
+                "format": "uri"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "text": {
+                "type": "string"
+              },
+              "authorFullname": {
+                "type": "string"
+              }
+            },
+            "required": ["authorUsername", "authorImg", "url"],
+            "dependencies": {
+              "createdAt": ["text"],
+              "text": ["createdAt"],
+              "authorFullname": ["authorUsername"]
+            }
+          }
+        },
+        "required": ["id", "type", "parsed"]
+      }
+    }
+  },
+  "required": ["id", "type", "parsed", "children"]
+}
