@@ -3,70 +3,88 @@
   "type": "object",
   "properties": {
     "id": {
-      "type": "string"
+      "type": "string",
+      "description": "Unique identifier for the root object."
     },
     "type": {
       "type": "string",
-      "enum": ["root"]
+      "enum": ["root"],
+      "description": "Specifies the type of object, fixed as 'root'."
     },
     "parsed": {
       "type": "object",
+      "description": "Parsed information for the root object.",
       "properties": {
         "websiteName": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the website being parsed."
         },
         "username": {
-          "type": "string"
+          "type": "string",
+          "description": "Username of the person or entity on the website."
         },
         "fullname": {
-          "type": "string"
+          "type": "string",
+          "description": "Full name of the person or entity."
         },
         "img": {
           "type": "string",
-          "format": "uri"
+          "format": "uri",
+          "description": "URL to the image/avatar of the user."
         },
         "url": {
           "type": "string",
-          "format": "uri"
+          "format": "uri",
+          "description": "URL to the profile or entity page."
         }
       },
       "required": ["websiteName", "username", "fullname", "img", "url"]
     },
     "children": {
       "type": "array",
+      "description": "Array of child objects, which can be either posts or profiles.",
       "items": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the child object."
           },
           "type": {
             "type": "string",
-            "enum": ["post", "profile"]
+            "enum": ["post", "profile"],
+            "description": "Specifies the type of child object."
           },
           "parsed": {
             "type": "object",
+            "description": "Parsed information for the child object.",
             "properties": {
               "authorUsername": {
-                "type": "string"
+                "type": "string",
+                "description": "Username of the author of the post or profile."
               },
               "authorImg": {
                 "type": "string",
-                "format": "uri"
+                "format": "uri",
+                "description": "URL to the image/avatar of the author."
               },
               "url": {
                 "type": "string",
-                "format": "uri"
+                "format": "uri",
+                "description": "URL to the post or profile."
               },
               "createdAt": {
                 "type": "string",
-                "format": "date-time"
+                "format": "date-time",
+                "description": "Timestamp of when the post was created."
               },
               "text": {
-                "type": "string"
+                "type": "string",
+                "description": "Content of the post."
               },
               "authorFullname": {
-                "type": "string"
+                "type": "string",
+                "description": "Full name of the author."
               }
             },
             "required": ["authorUsername", "authorImg", "url"],
